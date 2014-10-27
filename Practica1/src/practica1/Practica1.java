@@ -4,11 +4,14 @@ package practica1;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
 public class Practica1 {
 
     
    
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int j;
         String nombre;
@@ -18,9 +21,12 @@ public class Practica1 {
         int fact;
         int descuento;
         String fichero;
-        Control c = new Control();
+        MiJFrame ventana = null;
+        Control c = new Control(ventana);
 
-        do {
+        c.setVentana(ventana);
+        
+        /*do {
 
             System.out.println("¿Que quieres hacer");
             System.out.println("1-Añadir cliente\n2-Añadir cantidad a cliente"
@@ -32,16 +38,7 @@ public class Practica1 {
                     System.out.println("Tipo de cliente(normal/preferente");
                     tipo = sc.nextLine();
 
-                    if ("normal".equals(tipo)) {
-                        System.out.println("Introduce el nombre");
-                        nombre = sc.nextLine();
-                        System.out.println("introduce el telefono");
-                        tlf = sc.nextLine();
-                        System.out.println("Introduce el CIF");
-                        cif = sc.nextLine();
-                        descuento=0;
-                        c.crearClienteNormal(new ClienteNormal(nombre, tlf, cif, tipo,descuento));
-                    } else {
+                    if ("preferente".equals(tipo)) {
                         System.out.println("Introduce el nombre");
                         nombre = sc.nextLine();
                         System.out.println("introduce el telefono");
@@ -52,7 +49,16 @@ public class Practica1 {
                         descuento=sc.nextInt();
                         sc.nextLine();
                         c.crearClientePreferente(new ClientePreferente(nombre, tlf, cif, tipo,descuento));
-
+                    } else {
+                        
+                        System.out.println("Introduce el nombre");
+                        nombre = sc.nextLine();
+                        System.out.println("introduce el telefono");
+                        tlf = sc.nextLine();
+                        System.out.println("Introduce el CIF");
+                        cif = sc.nextLine();
+                        descuento=0;
+                        c.crearClienteNormal(new ClienteNormal(nombre, tlf, cif, tipo,descuento));
                     }
 
                     break;
@@ -73,15 +79,18 @@ public class Practica1 {
                     break;
                     
                 case 4:
-                    
-                    c.guardarFichero();
+            try {
+                c.guardarFichero();
+            } catch (IOException ex) {
+                Logger.getLogger(Practica1.class.getName()).log(Level.SEVERE, null, ex);
+            }
                     break;
                     
                 case 5:
                     c.cargarArchivo();
             }
         } while (j != 0);
-
+*/
            
 
         }

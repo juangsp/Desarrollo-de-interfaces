@@ -4,11 +4,18 @@ package practica1;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 
 
 public class Control {
    ArrayList<Cliente> clientes=new ArrayList();
    Dao d=new Dao();
+
+    public Control(JFrame j) {
+    }
+
+    
+   
    
    
   public void crearClienteNormal(ClienteNormal cn){
@@ -22,22 +29,21 @@ public class Control {
   
   public void añadirFactura(String cif,int cantidad){
       
-      for(int i=0;i<clientes.size();i++){
-          if(clientes.get(i).getCif().equals(cif)){
-              if("normal".equals(clientes.get(i).getTipo())){
-                   clientes.get(i).añadirFacturas(cantidad);
-              }else{
-                 int descuento=clientes.get(i).getDescuento();
-                 int cobrar=cantidad-cantidad*(descuento/100);
-                 
-              }
-             
-          }else{
-              System.out.println("Error ese CIF no existe");
-                  
-              }
-      }
-  }
+        for (int i = 1; i <= clientes.size(); i++) {
+            if (clientes.get(i).getCif().equals(cif) && "preferente".equals(clientes.get(i).getTipo())) {
+
+                int descuento = clientes.get(i).getDescuento();
+                cantidad = cantidad - (cantidad * (descuento / 100));
+                clientes.get(i).añadirFacturas(cantidad);
+
+            }
+            if (clientes.get(i).getCif().equals(cif) && "normal".equals(clientes.get(i).getTipo())) {
+
+                clientes.get(i).añadirFacturas(cantidad);
+            }
+
+        }
+    }
   
   public String verCarteraClientes(int i){
       
@@ -62,6 +68,11 @@ public class Control {
     }*/
     
     
+    }
+    
+    public void setVentana(JFrame f){
+        
+        f=new MiJFrame(this);
     }
        
   }
