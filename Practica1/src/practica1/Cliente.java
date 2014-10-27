@@ -85,12 +85,12 @@ public abstract class Cliente implements Serializable {
     
    public void añadirFacturas(int cantidad){
        
-       this.factura=this.factura+cantidad;
+       this.factura=factura+cantidad;
    }
 
     @Override
     public String toString() {
-         if (tipo=="normal"){
+         if ("normal".equals(tipo)){
           return cif+","+nombre+","+tipo+","+factura;
       }
         return cif+","+nombre+","+tipo+","+factura+","+descuento;
